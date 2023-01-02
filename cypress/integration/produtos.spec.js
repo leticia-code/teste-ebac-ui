@@ -11,18 +11,21 @@ describe('Funcionalidade Página de produtos', () => {
              // .first()
              // .click()
              // .eq(3)
-             .contains('Ariel Roll Sleeve Sweatshirt')
+             .contains('Arcadio Gym Short')
              .click()
 
     });
 
-    it('Deve adicionar um produto ao carrinho', () => {
+    it.only('Deve adicionar um produto ao carrinho', () => {
         cy.get('[class="product-block grid"]')
-            .contains('Ariel Roll Sleeve Sweatshirt').click()
-        cy.get('.button-variable-item-M').click()
-        cy.get('.button-variable-item-Purple').click()
+            .contains('Arcadio Gym Short').click()
+        cy.get('.button-variable-item-34').click()
+        cy.get('.button-variable-item-Blue').click()
         cy.get('.input-text').clear().type(2)
         cy.get('.single_add_to_cart_button').click()
+
+        cy.get('.dropdown-toggle > .mini-cart-items').should('contain', 2)
+        cy.get('.woocommerce-message').should('contain', ' 2 x "Arcadio Gym Short" foram adicionados no seu carrinho.')
     });
 
 });
